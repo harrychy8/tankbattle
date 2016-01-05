@@ -105,24 +105,34 @@ void draw(){
   if(isright) image(tankright,x,y);
 
   if (rectRectIntersect(x, y, x+40 , y+40 , x2, y2, x2+40, y2+40) == true) {
-    fill(0);
+    print("yes");
   } else {
-    fill(255);
+    print("no");
   }
+  
    
-  rect(x,y,40,40);
-  rect(x2,y2,40,40);
-   
-  }
+   for (int i = 0; i < 15; ++i){
+    for (int a = 0; a < 20; ++a){
+      if(map[i][a] == W){
+        xposofwall = a*40; 
+        yposofwall = i*40;
+      }  else {
+         break;
+      }
+    
+    }
+   }
+}
+  
  
 boolean rectRectIntersect(float left, float top, float right, float bottom,
                           float otherLeft, float otherTop, float otherRight, float otherBottom) {
   return !(left > otherRight || right < otherLeft || top > otherBottom || bottom < otherTop);
   }
 
-  
 
-}
+
+
 
 
 void keyPressed(){
