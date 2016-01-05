@@ -26,6 +26,7 @@ block[][] realMap = new block[15][20];
 
 
 float x = 280, y= 560 ;
+float x2 = 400, y2 = 400;
 PImage ironIMG, grassIMG, wallIMG, waterIMG, backgroundIMG;
 PImage tankup;
 PImage tankdown;
@@ -41,6 +42,8 @@ wall w1;
 
 void setup(){
   size(800,600);
+  ellipseMode(RADIUS);
+  smooth();
   backgroundIMG = loadImage("grass.png");
   backgroundIMG.resize(800,600);
   wallIMG = loadImage("wall.png");
@@ -93,6 +96,7 @@ void draw(){
     }
   }
   image(tank1,400,400);
+  image(tank3,400,0);
   
   
   if(isup) image(tankup,x,y);
@@ -100,8 +104,23 @@ void draw(){
   if(isleft) image(tankleft,x,y);
   if(isright) image(tankright,x,y);
 
-  tint(255,255,255,255);
-  image(tank3,400,0);
+  if (rectRectIntersect(x, y, x+40 , y+40 , x2, y2, x2+40, y2+40) == true) {
+    fill(0);
+  } else {
+    fill(255);
+  }
+   
+  rect(x,y,40,40);
+  rect(x2,y2,40,40);
+   
+  }
+ 
+boolean rectRectIntersect(float left, float top, float right, float bottom,
+                          float otherLeft, float otherTop, float otherRight, float otherBottom) {
+  return !(left > otherRight || right < otherLeft || top > otherBottom || bottom < otherTop);
+  }
+
+  
 
 }
 
