@@ -27,7 +27,7 @@ block[][] realMap = new block[15][20];
 
 float x = 280, y= 560 ;
 float x2 = 400, y2 = 400;
-PImage ironIMG, grassIMG, wallIMG, waterIMG, backgroundIMG;
+PImage ironIMG, grassIMG, wallIMG, waterIMG, backgroundIMG, canadaIMG;
 PImage tankup;
 PImage tankdown;
 PImage tankleft;
@@ -53,6 +53,8 @@ void setup() {
   ironIMG.resize(40, 40);
   waterIMG = loadImage("water.png");
   waterIMG.resize(40, 40);
+  canadaIMG = loadImage("canada.png");
+  canadaIMG.resize(80, 40);
   tankup = loadImage("tankup.png");
   tankup.resize(40, 40);
   tankdown = loadImage("tankdown.png");
@@ -94,6 +96,7 @@ void draw() {
       realMap[i][a].update();
     }
   }
+  image (canadaIMG, 360, 560);
   image(tank1, 400, 400);
   image(tank3, 400, 0);
 
@@ -104,40 +107,36 @@ void draw() {
   if (isright) image(tankright, x, y);
 
 
+  cangoup=true;
+  cangodown=true;
+  cangoleft=true;
+  cangoright=true;
 
-
+  
   for (int i = 0; i < 15; ++i) {
     for (int a = 0; a < 20; ++a) {
       if (map[i][a] == W || map[i][a] == R || map[i][a] == I ) {
         if (rectRectIntersect(x, y, x+40, y+40, realMap[i][a].x, realMap[i][a].y, realMap[i][a].x+40, realMap[i][a].y+40) == true) {
           if (x==realMap[i][a].x-40 && y-40<realMap[i][a].y  && y+40>realMap[i][a].y) {
             cangoright = false; 
-          } else {
-          cangoright = true;
-          }
-         
+          } 
+         println(cangoright);
           
           if (x==realMap[i][a].x+40 && y-40<realMap[i][a].y  && y+40>realMap[i][a].y){
             cangoleft = false; 
-          } else {
-          cangoleft = true;
-          }
+          } 
           
           
           if (y==realMap[i][a].y-40 && x-40<realMap[i][a].x  && x+40>realMap[i][a].x){
-            cangoup = false; 
-          } else {
-          cangoup = true;
-          }
-          
-          
-          if (y==realMap[i][a].y+40 && x-40<realMap[i][a].x  && x+40>realMap[i][a].x){
             cangodown = false; 
-          } else {
-          cangodown = true;
-          }
+          } 
+          
+           //<>//
+          if (y==realMap[i][a].y+40 && x-40<realMap[i][a].x  && x+40>realMap[i][a].x){
+            cangoup = false; 
+          } 
         } 
-        
+         //<>//
       }
     }
    }
@@ -158,24 +157,27 @@ boolean rectRectIntersect(float left, float top, float right, float bottom,
 
 
 void keyPressed() {
-  if ((key == 'w' || key == 'W') && cangoup) {
-
-    y-=10;
+  if (key == 'w' || key == 'W')  {
+    if  (cangoup == true){
+          y-=10; }
     setalltofalse();
     isup = true;
   }
-  if ((key == 's' || key == 'S') && cangodown) {
-    y+=10;
+  if (key == 's' || key == 'S') {
+    if  (cangodown == true){
+      y+=10;}
     setalltofalse();
     isdown = true;
   }
-  if ((key == 'a' || key == 'A') && cangoleft) {
-    x-=10;
+  if (key == 'a' || key == 'A')  {
+    if  (cangoleft == true){
+      x-=10;}
     setalltofalse();
     isleft = true;
   }
-  if ((key == 'd' || key == 'D') && cangoright) {
-    x+=10;
+  if (key == 'd' || key == 'D') {
+    if  (cangoright == true){
+      x+=10;}
     setalltofalse();
     isright = true;
   }
