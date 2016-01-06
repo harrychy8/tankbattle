@@ -108,52 +108,43 @@ void draw() {
 
   for (int i = 0; i < 15; ++i) {
     for (int a = 0; a < 20; ++a) {
-      if (map[i][a] == W) {
+      if (map[i][a] == W || map[i][a] == R || map[i][a] == I ) {
         if (rectRectIntersect(x, y, x+40, y+40, realMap[i][a].x, realMap[i][a].y, realMap[i][a].x+40, realMap[i][a].y+40) == true) {
-          if (x<=realMap[i][a].x-40){
+          if (x==realMap[i][a].x-40 && y-40<realMap[i][a].y  && y+40>realMap[i][a].y) {
             cangoright = false; 
           } else {
           cangoright = true;
           }
-        }
-        if (x>=realMap[i][a].x-40){
-            cangoleft = false;
-        }
-        if (x<=realMap[i][a].x-40){
-            cangoleft = false;
-        }
-        if (x<=realMap[i][a].x-40){
-            cangoleft = false;
-        }
+         
+          
+          if (x==realMap[i][a].x+40 && y-40<realMap[i][a].y  && y+40>realMap[i][a].y){
+            cangoleft = false; 
+          } else {
+          cangoleft = true;
+          }
+          
+          
+          if (y==realMap[i][a].y-40 && x-40<realMap[i][a].x  && x+40>realMap[i][a].x){
+            cangoup = false; 
+          } else {
+          cangoup = true;
+          }
+          
+          
+          if (y==realMap[i][a].y+40 && x-40<realMap[i][a].x  && x+40>realMap[i][a].x){
+            cangodown = false; 
+          } else {
+          cangodown = true;
+          }
+        } 
+        
       }
     }
+   }
   }
 
 
 
-  for (int i = 0; i < 15; ++i) {
-    for (int a = 0; a < 20; ++a) {
-      if (map[i][a] == R) {
-        if (rectRectIntersect(x, y, x+40, y+40, realMap[i][a].x, realMap[i][a].y, realMap[i][a].x+40, realMap[i][a].y+40) == true) {
-          print("collide with " + i + " " + a +  "\n");
-        }
-      }
-    }
-  }
-
-
-
-
-  for (int i = 0; i < 15; ++i) {
-    for (int a = 0; a < 20; ++a) {
-      if (map[i][a] == I) {
-        if (rectRectIntersect(x, y, x+40, y+40, realMap[i][a].x, realMap[i][a].y, realMap[i][a].x+40, realMap[i][a].y+40) == true) {
-          print("collide with " + i + " " + a +  "\n");
-        }
-      }
-    }
-  }
-}
 
 
 boolean rectRectIntersect(float left, float top, float right, float bottom, 
