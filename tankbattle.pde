@@ -34,13 +34,14 @@ PImage tankleft;
 PImage tankright;
 boolean isup, isdown, isleft, isright;
 boolean cangoup=true, cangodown=true, cangoleft=true, cangoright=true;
+ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 
 
 PImage tank1;
 PImage tank3;
 
 void setup() {
-  size(800, 600);
+  size(800, 600, P3D );
   ellipseMode(RADIUS);
   smooth();
   backgroundIMG = loadImage("grass.png");
@@ -140,18 +141,23 @@ void draw() {
       }
     }
    }
-  }
+  
 
 
+for(Bullet bullet : bullets){
+      bullet.update();
+      bullet.display();
+    }
 
+}
 
 
 boolean rectRectIntersect(float left, float top, float right, float bottom, 
   float otherLeft, float otherTop, float otherRight, float otherBottom) {
   return !(left > otherRight || right < otherLeft || top > otherBottom || bottom < otherTop);
+
+
 }
-
-
 
 
 
@@ -184,7 +190,19 @@ void keyPressed() {
 
   x = constrain(x, 0, 760);
   y = constrain(y, 0, 560);
+  
+
+if(key == ' '){
+    shoot(); 
+ } 
 }
+
+void shoot(){
+  bullets.add(new Bullet(x+20, y+20));
+}
+
+
+
 
 void setalltofalse() {
   isup = false;
