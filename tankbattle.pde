@@ -69,7 +69,7 @@ void setup() {
   tank3 = loadImage("tank2.png");
   tank3.resize(40, 40);
   isup = true;
- 
+
   for (int i = 0; i < 15; ++i) {
     for (int a = 0; a < 20; ++a) {
       if (map[i][a] == W) {
@@ -113,35 +113,35 @@ void draw() {
   cangoleft=true;
   cangoright=true;
 
-  
+
   for (int i = 0; i < 15; ++i) {
     for (int a = 0; a < 20; ++a) {
       if (map[i][a] == W || map[i][a] == R || map[i][a] == I ) {
         if (rectRectIntersect(x, y, x+40, y+40, realMap[i][a].x, realMap[i][a].y, realMap[i][a].x+40, realMap[i][a].y+40) == true) {
           if (x==realMap[i][a].x-40 && y-40<realMap[i][a].y  && y+40>realMap[i][a].y) {
-            cangoright = false; 
-          } 
+            cangoright = false;
+          }
          println(cangoright);
-          
+
           if (x==realMap[i][a].x+40 && y-40<realMap[i][a].y  && y+40>realMap[i][a].y){
-            cangoleft = false; 
-          } 
-          
-          
+            cangoleft = false;
+          }
+
+
           if (y==realMap[i][a].y-40 && x-40<realMap[i][a].x  && x+40>realMap[i][a].x){
-            cangodown = false; 
-          } 
-          
+            cangodown = false;
+          }
+
            //<>//
           if (y==realMap[i][a].y+40 && x-40<realMap[i][a].x  && x+40>realMap[i][a].x){
-            cangoup = false; 
-          } 
-        } 
+            cangoup = false;
+          }
+        }
          //<>//
       }
     }
    }
-  
+
 
 
 for(Bullet bullet : bullets){
@@ -152,7 +152,7 @@ for(Bullet bullet : bullets){
 }
 
 
-boolean rectRectIntersect(float left, float top, float right, float bottom, 
+boolean rectRectIntersect(float left, float top, float right, float bottom,
   float otherLeft, float otherTop, float otherRight, float otherBottom) {
   return !(left > otherRight || right < otherLeft || top > otherBottom || bottom < otherTop);
 
@@ -190,15 +190,15 @@ void keyPressed() {
 
   x = constrain(x, 0, 760);
   y = constrain(y, 0, 560);
-  
+
 
 if(key == ' '){
-    shoot(); 
- } 
+    shoot();
+ }
 }
 
 void shoot(){
-  bullets.add(new Bullet(x+20, y+20));
+  bullets.add(new Bullet((int)(x+20), (int)(y+20)));
 }
 
 
