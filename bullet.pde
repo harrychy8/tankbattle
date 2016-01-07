@@ -14,10 +14,17 @@ void update(){
     // check for outside screen
     // hit detection etc.
     
-    y -= speed; // wrong!!
     
-    if(y < 0){
-      die();  
+    if (isup==true){
+      y -= speed; }
+    if (isdown==true){
+      y = speed; }
+    if (isleft==true){
+      x -= speed; }
+    if (isright==true){
+      x = speed; }
+    if (y<0 || y >600 || x<0 || x> 800){
+      die();
     }
   }
   

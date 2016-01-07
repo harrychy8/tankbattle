@@ -165,25 +165,25 @@ boolean rectRectIntersect(float left, float top, float right, float bottom,
 void keyPressed() {
   if (key == 'w' || key == 'W')  {
     if  (cangoup == true){
-          y-=10; }
+          y-=20; }
     setalltofalse();
     isup = true;
   }
   if (key == 's' || key == 'S') {
     if  (cangodown == true){
-      y+=10;}
+      y+=20;}
     setalltofalse();
     isdown = true;
   }
   if (key == 'a' || key == 'A')  {
     if  (cangoleft == true){
-      x-=10;}
+      x-=20;}
     setalltofalse();
     isleft = true;
   }
   if (key == 'd' || key == 'D') {
     if  (cangoright == true){
-      x+=10;}
+      x+=20;}
     setalltofalse();
     isright = true;
   }
