@@ -1,10 +1,12 @@
 class Bullet{
   int x, y;
   int speed;
+  ArrayList<Bullet> bullets;
   
-  Bullet(int x, int y){
+  Bullet(int x, int y,ArrayList<Bullet> bullets){
     this.x = x;
     this.y = y;
+    this.bullets = bullets;
     speed = 10;
   }
 
@@ -40,6 +42,9 @@ void die(){
     // remove the bullet from the arrayList
     // will throw a ConcurrentModificationException
     // don't know why
-    //bullets.remove(this);
+    bullets.remove(this);
+    // JACK ZHENG
+    //Because of scope, global variables are not visible inside a class, you have to do the following:
+    //Pass the bullets into class
   }
 }

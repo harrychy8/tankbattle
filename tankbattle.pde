@@ -144,9 +144,10 @@ void draw() {
 
 
 
-for(Bullet bullet : bullets){
-      bullet.update();
-      bullet.display();
+for(int i = 0; i < bullets.size(); ++i){
+    Bullet bullet = bullets.get(i);
+      if(bullet != null) bullet.update();
+      if(bullet != null) bullet.display();
     }
 
 }
@@ -198,7 +199,7 @@ if(key == ' '){
 }
 
 void shoot(){
-  bullets.add(new Bullet((int)(x+20), (int)(y+20)));
+  bullets.add(new Bullet((int)(x+20), (int)(y+20), bullets));
 }
 
 
