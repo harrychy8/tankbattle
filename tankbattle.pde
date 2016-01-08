@@ -132,12 +132,12 @@ void draw() {
           if (y==realMap[i][a].y-40 && x-40<realMap[i][a].x  && x+40>realMap[i][a].x){
             cangodown = false;
           }
-
+ //<>//
            //<>//
           if (y==realMap[i][a].y+40 && x-40<realMap[i][a].x  && x+40>realMap[i][a].x){
             cangoup = false;
           }
-        }
+        } //<>//
          //<>//
       }
     }
@@ -156,6 +156,7 @@ for(int i = 0; i < bullets.size(); ++i){
 
 boolean rectRectIntersect(float left, float top, float right, float bottom,
   float otherLeft, float otherTop, float otherRight, float otherBottom) {
+    
   return !(left > otherRight || right < otherLeft || top > otherBottom || bottom < otherTop);
 
 
