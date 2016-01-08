@@ -13,18 +13,17 @@ class Bullet{
 
 
 void update(){
-    // check for outside screen
-    // hit detection etc.
+    
     
     
     if (isup==true){
       y -= speed; }
     if (isdown==true){
-      y = speed; }
+      y += speed; }
     if (isleft==true){
       x -= speed; }
     if (isright==true){
-      x = speed; }
+      x += speed; }
     if (y<0 || y >600 || x<0 || x> 800){
       die();
     }
@@ -39,12 +38,7 @@ void display(){
   }
   
 void die(){
-    // remove the bullet from the arrayList
-    // will throw a ConcurrentModificationException
-    // don't know why
+    
     bullets.remove(this);
-    // JACK ZHENG
-    //Because of scope, global variables are not visible inside a class, you have to do the following:
-    //Pass the bullets into class
-  }
+    
 }
