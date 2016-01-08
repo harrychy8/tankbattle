@@ -120,7 +120,7 @@ void draw() {
           if (x==realMap[i][a].x-40 && y-40<realMap[i][a].y  && y+40>realMap[i][a].y) {
             cangoright = false; 
           } 
-         println(cangoright);
+      
           
           if (x==realMap[i][a].x+40 && y-40<realMap[i][a].y  && y+40>realMap[i][a].y){
             cangoleft = false; 
