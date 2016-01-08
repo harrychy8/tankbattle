@@ -119,17 +119,11 @@ void draw() {
       if (map[i][a] == W || map[i][a] == R || map[i][a] == I ) {
         if (rectRectIntersect(x, y, x+40, y+40, realMap[i][a].x, realMap[i][a].y, realMap[i][a].x+40, realMap[i][a].y+40) == true) {
           if (x==realMap[i][a].x-40 && y-40<realMap[i][a].y  && y+40>realMap[i][a].y) {
-<<<<<<< HEAD
+
             cangoright = false; 
           } 
       
           
-=======
-            cangoright = false;
-          }
-         println(cangoright);
-
->>>>>>> origin/master
           if (x==realMap[i][a].x+40 && y-40<realMap[i][a].y  && y+40>realMap[i][a].y){
             cangoleft = false;
           }

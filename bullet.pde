@@ -1,13 +1,24 @@
 class Bullet{
   int x, y;
-  int speed;
   ArrayList<Bullet> bullets;
+  int xSpeed, ySpeed;
   
   Bullet(int x, int y,ArrayList<Bullet> bullets){
     this.x = x;
     this.y = y;
     this.bullets = bullets;
-    speed = 10;
+    
+    xSpeed = 0;
+    ySpeed = 0;
+    
+    if (isup==true){
+      ySpeed = -10; }
+    if (isdown==true){
+      ySpeed = 10; }
+    if (isleft==true){
+      xSpeed = -10; }
+    if (isright==true){
+      xSpeed = 10; }
   }
 
 
@@ -15,30 +26,42 @@ class Bullet{
 void update(){
     
     
+   x += xSpeed;
+   y += ySpeed;
     
-    if (isup==true){
-      y -= speed; }
-    if (isdown==true){
-      y += speed; }
-    if (isleft==true){
-      x -= speed; }
-    if (isright==true){
-      x += speed; }
+    
+    
     if (y<0 || y >600 || x<0 || x> 800){
+      
       die();
     }
-  }
   
+  for (int i = 0; i < 15; ++i) {
+    for (int a = 0; a < 20; ++a) {
+      if (map[i][a] == W ||  map[i][a] == I ) {
+        if (rectRectIntersect(x, y, x+40, y+40, realMap[i][a].x, realMap[i][a].y, realMap[i][a].x+40, realMap[i][a].y+40) == true) {
+          
+            
+            die();}
+        }
+      }
+    }
+  }
+
+        
+
+
+
 void display(){
     pushMatrix();
     translate(x, y);
     fill(0);
-    ellipse(0, 0, 20, 20);
+    ellipse(0, 0, 5, 5);
     popMatrix();
   }
   
 void die(){
     
     bullets.remove(this);
-    
+  }
 }
