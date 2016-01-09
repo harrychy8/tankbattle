@@ -35,7 +35,7 @@ PImage tankright;
 boolean isup, isdown, isleft, isright;
 boolean cangoup=true, cangodown=true, cangoleft=true, cangoright=true;
 ArrayList<Bullet> bullets = new ArrayList<Bullet>();
-
+ArrayList<EnemyTank> enemyTanks = new ArrayList<EnemyTank>();
 
 PImage tank1;
 PImage tank3;
@@ -86,6 +86,15 @@ void setup() {
       }
     }
   }
+  
+  
+  for (int i = 0; i < 4; ++i){
+    spawnEnemyTank(); 
+  }
+}
+
+void spawnEnemyTank(){
+  enemyTanks.add(new EnemyTank((int)(40 * random(0,19)),0)); 
 }
 
 
@@ -140,6 +149,11 @@ void draw() {
         }
       }
     }
+  }
+  
+  for (int i = 0; i < enemyTanks.size(); ++i){
+    enemyTanks.get(i).update();
+    enemyTanks.get(i).findRoute((int)x,(int)y);
   }
 
 
