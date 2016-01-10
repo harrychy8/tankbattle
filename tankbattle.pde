@@ -28,16 +28,18 @@ block[][] realMap = new block[15][20];
 float x = 280, y= 560 ;
 float x2 = 400, y2 = 400;
 PImage ironIMG, grassIMG, wallIMG, waterIMG, backgroundIMG, canadaIMG;
-PImage tankup;
-PImage tankdown;
-PImage tankleft;
-PImage tankright;
 boolean isup, isdown, isleft, isright;
 boolean cangoup=true, cangodown=true, cangoleft=true, cangoright=true;
 ArrayList<Bullet> bullets = new ArrayList<Bullet>();
+<<<<<<< HEAD
 ArrayList<EnemyTank> enemyTanks = new ArrayList<EnemyTank>();
 int whoIsShooting; 
 PImage tank2;
+=======
+ArrayList<Tank> tanks = new ArrayList<Tank>();
+
+Tank player;
+>>>>>>> origin/master
 
 
 void setup() {
@@ -56,17 +58,9 @@ void setup() {
   waterIMG.resize(40, 40);
   canadaIMG = loadImage("canada.png");
   canadaIMG.resize(80, 40);
-  tankup = loadImage("tankup.png");
-  tankup.resize(40, 40);
-  tankdown = loadImage("tankdown.png");
-  tankdown.resize(40, 40);
-  tankleft = loadImage("tankleft.png");
-  tankleft.resize(40, 40);
-  tankright = loadImage("tankright.png");
-  tankright.resize(40, 40);
 
-  tank2 = loadImage("tank2down.png");
-  tank2.resize(40, 40);
+  player = new Tank(280,560);
+  
   isup = true;
 
   for (int i = 0; i < 15; ++i) {
@@ -85,6 +79,7 @@ void setup() {
       }
     }
   }
+<<<<<<< HEAD
 
 
   for (int i = 0; i < 4; ++i) {
@@ -95,6 +90,11 @@ void setup() {
 void spawnEnemyTank() {
   enemyTanks.add(new EnemyTank((int)(40 * random(0, 19)), 0));
 }
+=======
+}
+
+
+>>>>>>> origin/master
 
 
 void draw() {
@@ -106,22 +106,29 @@ void draw() {
     }
   }
   image (canadaIMG, 360, 560);
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> origin/master
 
-  if (isup) image(tankup, x, y);
-  if (isdown) image(tankdown, x, y);
-  if (isleft) image(tankleft, x, y);
-  if (isright) image(tankright, x, y);
 
 
   cangoup=true;
   cangodown=true;
   cangoleft=true;
   cangoright=true;
+  
+  player.update();
 
+  for (int i = 0; i < tanks.size(); ++i) {
+    Tank tank = tanks.get(i);
+    
+    if (tank != null) tank.update();
+    if (tank != null) tank.handleKeyPressed();
 
+<<<<<<< HEAD
   for (int i = 0; i < 15; ++i) {
     for (int a = 0; a < 20; ++a) {
       if (map[i][a] == W || map[i][a] == R || map[i][a] == I ) {
@@ -155,10 +162,10 @@ void draw() {
      
     }
 
+=======
+>>>>>>> origin/master
     //if (enemyTanks != null)enemyTanks.get(i).findRoute((int)x,(int)y);
   }
-
-
 
   for (int i = 0; i < bullets.size(); ++i) {
     Bullet bullet = bullets.get(i);
@@ -167,16 +174,20 @@ void draw() {
   }
 }
 
+void keyPressed(){
+  player.handleKeyPressed();
+}
+
 
 boolean rectRectIntersect(float left, float top, float right, float bottom, 
   float otherLeft, float otherTop, float otherRight, float otherBottom) {
-
   return !(left > otherRight || right < otherLeft || top > otherBottom || bottom < otherTop);
 }
 
 
 
 
+<<<<<<< HEAD
 void keyPressed() {
   if (key == 'w' || key == 'W') {
     if  (cangoup == true) {
@@ -216,6 +227,46 @@ void keyPressed() {
     shoot();
   }
 }
+=======
+//void keyPressed() {
+//if (key == 'w' || key == 'W') {
+//if  (cangoup == true) {
+//y-=20;
+//}
+//setalltofalse();
+//isup = true;
+//
+//if (key == 's' || key == 'S') {
+//if  (cangodown == true) {
+//y+=20;
+//}
+// setalltofalse();
+//isdown = true;
+//}
+//if (key == 'a' || key == 'A') {
+//if  (cangoleft == true) {
+// x-=20;
+// }
+//setalltofalse();
+// isleft = true;
+// }
+//if (key == 'd' || key == 'D') {
+//if  (cangoright == true) {
+// x+=20;
+//  }
+// setalltofalse();
+// isright = true;
+// }
+
+//  x = constrain(x, 0, 760);
+// y = constrain(y, 0, 560);
+
+
+//if (key == ' ') {
+// shoot();
+// }
+// }
+>>>>>>> origin/master
 
 void shoot() {
   bullets.add(new Bullet((int)(x+20), (int)(y+20), bullets));
