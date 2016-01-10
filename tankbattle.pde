@@ -35,7 +35,7 @@ PImage tankright;
 boolean isup, isdown, isleft, isright;
 boolean cangoup=true, cangodown=true, cangoleft=true, cangoright=true;
 ArrayList<Bullet> bullets = new ArrayList<Bullet>();
-ArrayList<EnemyTank> enemyTanks = new ArrayList<EnemyTank>();
+ArrayList<tank> tanks = new ArrayList<tank>();
 
 PImage tank2;
 
@@ -72,157 +72,150 @@ void setup() {
   for (int i = 0; i < 15; ++i) {
     for (int a = 0; a < 20; ++a) {
       if (map[i][a] == W) {
-        realMap[i][a] = new wall(a * 40, i * 40, wallIMG,5);
+        realMap[i][a] = new wall(a * 40, i * 40, wallIMG, 5);
       }
       if (map[i][a] == R) {
-        realMap[i][a] = new wall(a * 40, i * 40, waterIMG,-1);
+        realMap[i][a] = new wall(a * 40, i * 40, waterIMG, -1);
       }
       if (map[i][a] == G) {
-        realMap[i][a] = new wall(a * 40, i * 40, grassIMG,-1);
+        realMap[i][a] = new wall(a * 40, i * 40, grassIMG, -1);
       }
       if (map[i][a] == I) {
-        realMap[i][a] = new wall(a * 40, i * 40, ironIMG,-1);
+        realMap[i][a] = new wall(a * 40, i * 40, ironIMG, -1);
       }
     }
   }
-  
-  
-  for (int i = 0; i < 4; ++i){
-    spawnEnemyTank(); 
-  }
-}
-
-void spawnEnemyTank(){
-  enemyTanks.add(new EnemyTank((int)(40 * random(0,19)),0)); 
 }
 
 
-void draw() {
-
-  image(backgroundIMG, 0, 0);
-  for (int i = 0; i < 15; ++i) {
-    for (int a = 0; a < 20; ++a) {
-      realMap[i][a].update();
-    }
-  }
-  image (canadaIMG, 360, 560);
- 
 
 
+  void draw() {
 
-  if (isup) image(tankup, x, y);
-  if (isdown) image(tankdown, x, y);
-  if (isleft) image(tankleft, x, y);
-  if (isright) image(tankright, x, y);
-
-
-  cangoup=true;
-  cangodown=true;
-  cangoleft=true;
-  cangoright=true;
-
-
-  for (int i = 0; i < 15; ++i) {
-    for (int a = 0; a < 20; ++a) {
-      if (map[i][a] == W || map[i][a] == R || map[i][a] == I ) {
-        if (rectRectIntersect(x, y, x+40, y+40, realMap[i][a].x, realMap[i][a].y, realMap[i][a].x+40, realMap[i][a].y+40) == true) {
-          if (x==realMap[i][a].x-40 && y-40<realMap[i][a].y  && y+40>realMap[i][a].y) {
-
-            cangoright = false;
-          } 
-
-
-          if (x==realMap[i][a].x+40 && y-40<realMap[i][a].y  && y+40>realMap[i][a].y) {
-            cangoleft = false;
-          }
-
-
-          if (y==realMap[i][a].y-40 && x-40<realMap[i][a].x  && x+40>realMap[i][a].x) {
-            cangodown = false;
-          }
-
-
-          if (y==realMap[i][a].y+40 && x-40<realMap[i][a].x  && x+40>realMap[i][a].x) {
-            cangoup = false;
-          }
-        }
+    image(backgroundIMG, 0, 0);
+    for (int i = 0; i < 15; ++i) {
+      for (int a = 0; a < 20; ++a) {
+        realMap[i][a].update();
       }
     }
-  }
-  
-  for (int i = 0; i < enemyTanks.size(); ++i){
-    if (enemyTanks != null)enemyTanks.get(i).update();
-    //if (enemyTanks != null)enemyTanks.get(i).findRoute((int)x,(int)y);
-  }
-
-
-
-  for (int i = 0; i < bullets.size(); ++i) {
-    Bullet bullet = bullets.get(i);
-    if (bullet != null) bullet.update();
-    if (bullet != null) bullet.display();
-  }
-}
-
-
-boolean rectRectIntersect(float left, float top, float right, float bottom, 
-  float otherLeft, float otherTop, float otherRight, float otherBottom) {
-
-  return !(left > otherRight || right < otherLeft || top > otherBottom || bottom < otherTop);
-}
+    image (canadaIMG, 360, 560);
 
 
 
 
-void keyPressed() {
-  if (key == 'w' || key == 'W') {
-    if  (cangoup == true) {
-      y-=20;
+    if (isup) image(tankup, x, y);
+    if (isdown) image(tankdown, x, y);
+    if (isleft) image(tankleft, x, y);
+    if (isright) image(tankright, x, y);
+
+
+    cangoup=true;
+    cangodown=true;
+    cangoleft=true;
+    cangoright=true;
+
+
+    //for (int i = 0; i < 15; ++i) {
+    //   for (int a = 0; a < 20; ++a) {
+    //     if (map[i][a] == W || map[i][a] == R || map[i][a] == I ) {
+    //       if (rectRectIntersect(x, y, x+40, y+40, realMap[i][a].x, realMap[i][a].y, realMap[i][a].x+40, realMap[i][a].y+40) == true) {
+    //         if (x==realMap[i][a].x-40 && y-40<realMap[i][a].y  && y+40>realMap[i][a].y) {
+    //
+    //             cangoright = false;
+    //           } 
+    //
+    //
+    //            if (x==realMap[i][a].x+40 && y-40<realMap[i][a].y  && y+40>realMap[i][a].y) {
+    //              cangoleft = false;
+    //            }
+    //
+    //
+    //            if (y==realMap[i][a].y-40 && x-40<realMap[i][a].x  && x+40>realMap[i][a].x) {
+    //              cangodown = false;
+    //            }
+    //
+    //
+    //            if (y==realMap[i][a].y+40 && x-40<realMap[i][a].x  && x+40>realMap[i][a].x) {
+    //              cangoup = false;
+    //            }
+    //          }
+    //        }
+    //      }
+    //    }
+
+    for (int i = 0; i < tank.size(); ++i) {
+      if (tank != null)tank.get(i).update();
+      //if (enemyTanks != null)enemyTanks.get(i).findRoute((int)x,(int)y);
     }
-    setalltofalse();
-    isup = true;
-  }
-  if (key == 's' || key == 'S') {
-    if  (cangodown == true) {
-      y+=20;
+
+
+
+    for (int i = 0; i < bullets.size(); ++i) {
+      Bullet bullet = bullets.get(i);
+      if (bullet != null) bullet.update();
+      if (bullet != null) bullet.display();
     }
-    setalltofalse();
-    isdown = true;
-  }
-  if (key == 'a' || key == 'A') {
-    if  (cangoleft == true) {
-      x-=20;
-    }
-    setalltofalse();
-    isleft = true;
-  }
-  if (key == 'd' || key == 'D') {
-    if  (cangoright == true) {
-      x+=20;
-    }
-    setalltofalse();
-    isright = true;
   }
 
-  x = constrain(x, 0, 760);
-  y = constrain(y, 0, 560);
+
+  // boolean rectRectIntersect(float left, float top, float right, float bottom, 
+  //   float otherLeft, float otherTop, float otherRight, float otherBottom) {
+  //
+  //   return !(left > otherRight || right < otherLeft || top > otherBottom || bottom < otherTop);
+  //  }
 
 
-  if (key == ' ') {
-    shoot();
+
+
+  //void keyPressed() {
+  //if (key == 'w' || key == 'W') {
+  //if  (cangoup == true) {
+  //y-=20;
+  //}
+  //setalltofalse();
+  //isup = true;
+  //
+  //if (key == 's' || key == 'S') {
+  //if  (cangodown == true) {
+  //y+=20;
+  //}
+  // setalltofalse();
+  //isdown = true;
+  //}
+  //if (key == 'a' || key == 'A') {
+  //if  (cangoleft == true) {
+  // x-=20;
+  // }
+  //setalltofalse();
+  // isleft = true;
+  // }
+  //if (key == 'd' || key == 'D') {
+  //if  (cangoright == true) {
+  // x+=20;
+  //  }
+  // setalltofalse();
+  // isright = true;
+  // }
+
+  //  x = constrain(x, 0, 760);
+  // y = constrain(y, 0, 560);
+
+
+  //if (key == ' ') {
+  // shoot();
+  // }
+  // }
+
+  void shoot() {
+    bullets.add(new Bullet((int)(x+20), (int)(y+20), bullets));
   }
-}
-
-void shoot() {
-  bullets.add(new Bullet((int)(x+20), (int)(y+20), bullets));
-}
 
 
 
 
-void setalltofalse() {
-  isup = false;
-  isdown = false;
-  isleft = false;
-  isright = false;
-}
+  void setalltofalse() {
+    isup = false;
+    isdown = false;
+    isleft = false;
+    isright = false;
+  }
