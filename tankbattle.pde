@@ -36,7 +36,7 @@ boolean isup, isdown, isleft, isright;
 boolean cangoup=true, cangodown=true, cangoleft=true, cangoright=true;
 ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 ArrayList<EnemyTank> enemyTanks = new ArrayList<EnemyTank>();
-
+int whoIsShooting; 
 PImage tank2;
 
 
@@ -72,28 +72,28 @@ void setup() {
   for (int i = 0; i < 15; ++i) {
     for (int a = 0; a < 20; ++a) {
       if (map[i][a] == W) {
-        realMap[i][a] = new wall(a * 40, i * 40, wallIMG,5);
+        realMap[i][a] = new wall(a * 40, i * 40, wallIMG, 5);
       }
       if (map[i][a] == R) {
-        realMap[i][a] = new wall(a * 40, i * 40, waterIMG,-1);
+        realMap[i][a] = new wall(a * 40, i * 40, waterIMG, -1);
       }
       if (map[i][a] == G) {
-        realMap[i][a] = new wall(a * 40, i * 40, grassIMG,-1);
+        realMap[i][a] = new wall(a * 40, i * 40, grassIMG, -1);
       }
       if (map[i][a] == I) {
-        realMap[i][a] = new wall(a * 40, i * 40, ironIMG,-1);
+        realMap[i][a] = new wall(a * 40, i * 40, ironIMG, -1);
       }
     }
   }
-  
-  
-  for (int i = 0; i < 4; ++i){
-    spawnEnemyTank(); 
+
+
+  for (int i = 0; i < 4; ++i) {
+    spawnEnemyTank();
   }
 }
 
-void spawnEnemyTank(){
-  enemyTanks.add(new EnemyTank((int)(40 * random(0,19)),0)); 
+void spawnEnemyTank() {
+  enemyTanks.add(new EnemyTank((int)(40 * random(0, 19)), 0));
 }
 
 
@@ -106,7 +106,7 @@ void draw() {
     }
   }
   image (canadaIMG, 360, 560);
- 
+
 
 
 
@@ -149,9 +149,12 @@ void draw() {
       }
     }
   }
-  
-  for (int i = 0; i < enemyTanks.size(); ++i){
-    if (enemyTanks != null)enemyTanks.get(i).update();
+
+  for (int i = 0; i < enemyTanks.size(); ++i) {
+    if (enemyTanks != null ) {enemyTanks.get(i).update();
+     
+    }
+
     //if (enemyTanks != null)enemyTanks.get(i).findRoute((int)x,(int)y);
   }
 
@@ -209,6 +212,7 @@ void keyPressed() {
 
 
   if (key == ' ') {
+    whoIsShooting =0;
     shoot();
   }
 }

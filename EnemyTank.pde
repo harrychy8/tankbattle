@@ -1,23 +1,23 @@
 class EnemyTank {
   int x, y;
   int speed = 40;
-  int wait=10;
-  boolean cangoup = true;
-  boolean cangoleft = true;
-  boolean cangoright = true;
-  boolean cangodown = true;
-  boolean isup, isdown, isleft, isright;
+  int wait=30;
+  boolean ecangoup = true;
+  boolean ecangoleft = true;
+  boolean ecangoright = true;
+  boolean ecangodown = true;
+  boolean eisup, eisdown, eisleft, eisright;
   PImage tank2up;
   PImage tank2down;
   PImage tank2left;
   PImage tank2right;
-  
-  
+
+
 
   EnemyTank(int x, int y) {
     this.x = x;
     this.y = y;
-    this.mainImage.resize(40, 40);
+
 
     tank2up = loadImage("tank2up.png");
     tank2up.resize(40, 40);
@@ -29,59 +29,62 @@ class EnemyTank {
     tank2right.resize(40, 40);
   }
 
+
+
+
+
   void moveUp() {
-    if (this.cangoup == true) {
+    if (this.ecangoup == true) {
       setalltofalse();
-      this.isup = true;
+      this.eisup = true;
       this.y -= this.speed;
-    } 
+    }
   }
 
   void moveLeft() {
-    if (this.cangoleft) {
+    if (this.ecangoleft) {
       setalltofalse();
-      this.isleft = true;
+      this.eisleft = true;
       this.x -= this.speed;
-    } 
+    }
   }
 
   void moveRight() {
-    if (this.cangoright) {
+    if (this.ecangoright) {
       setalltofalse();
-      this.isright = true;
+      this.eisright = true;
       this.x += this.speed;
     }
   }
 
   void moveDown() {
-    if (this.cangodown) {
+    if (this.ecangodown) {
       setalltofalse();
-      this.isdown = true;
+      this.eisdown = true;
       this.y += this.speed;
-     
     }
   }
 
   void setalltofalse() {
-    this.isup = false;
-    this.isdown = false;
-    this.isleft = false;
-    this.isright = false;
+    this.eisup = false;
+    this.eisdown = false;
+    this.eisleft = false;
+    this.eisright = false;
   }
 
-void shoot() {
-  bullets.add(new Bullet((int)(this.x+20), (int)(this.y+20), bullets));
+  void shoot() {
+    whoIsShooting = 1;
+    bullets.add(new Bullet((int)(this.x+20), (int)(this.y+20), bullets));
+  }
 
-}
- 
 
 
   void randomMovement() {
-    if (wait < 10) {
+    if (wait < 30) {
       wait +=1;
     }
-    if (wait==10) {
-      wait =0;
+    if (wait==30) {
+      wait = 0;
       int i = (int)random(1, 6);
       switch(i) {
       case 1:
@@ -98,7 +101,7 @@ void shoot() {
         break;
       case 5:
         shoot();
-      
+
       default:
         break;
       }
@@ -111,44 +114,46 @@ void shoot() {
 
 
   void update() {
-    
 
-    if (isup) image(tank2up, x, y);
-    if (isdown) image(tank2down, x, y);
-    if (isleft) image(tank2left, x, y);
-    if (isright) image(tank2right, x, y);
+
+    if (eisup) image(tank2up, x, y);
+    if (eisdown) image(tank2down, x, y);
+    if (eisleft) image(tank2left, x, y);
+    if (eisright) image(tank2right, x, y);
 
     randomMovement();
+
+
     for (int i = 0; i < 15; ++i) {
       for (int a = 0; a < 20; ++a) {
         if (map[i][a] == W || map[i][a] == R || map[i][a] == I ) {
           if (rectRectIntersect(x, y, x+40, y+40, realMap[i][a].x, realMap[i][a].y, realMap[i][a].x+40, realMap[i][a].y+40) == true) {
             if (x==realMap[i][a].x-40 && y-40<realMap[i][a].y  && y+40>realMap[i][a].y) {
 
-              this.cangoright = false;
+              this.ecangoright = false;
             } else {
-              this.cangoright = true;
+              this.ecangoright = true;
             }
 
 
             if (x==realMap[i][a].x+40 && y-40<realMap[i][a].y  && y+40>realMap[i][a].y) {
-              this.cangoleft = false;
+              this.ecangoleft = false;
             } else {
-              this.cangoleft = true;
+              this.ecangoleft = true;
             }
 
 
             if (y==realMap[i][a].y-40 && x-40<realMap[i][a].x  && x+40>realMap[i][a].x) {
-              this.cangodown = false;
+              this.ecangodown = false;
             } else {
-              this.cangodown = true;
+              this.ecangodown = true;
             }
 
 
             if (y==realMap[i][a].y+40 && x-40<realMap[i][a].x  && x+40>realMap[i][a].x) {
-              this.cangoup = false;
+              this.ecangoup = false;
             } else {
-              this.cangoup = true;
+              this.ecangoup = true;
             }
           }
         }
