@@ -33,7 +33,7 @@ boolean cangoup=true, cangodown=true, cangoleft=true, cangoright=true;
 ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 ArrayList<Tank> tanks = new ArrayList<Tank>();
 
-PImage tank2;
+Tank player;
 
 
 void setup() {
@@ -53,9 +53,8 @@ void setup() {
   canadaIMG = loadImage("canada.png");
   canadaIMG.resize(80, 40);
 
-
-  tank2 = loadImage("tank2down.png");
-  tank2.resize(40, 40);
+  player = new Tank(280,560);
+  
   isup = true;
 
   for (int i = 0; i < 15; ++i) {
@@ -95,6 +94,8 @@ void draw() {
   cangodown=true;
   cangoleft=true;
   cangoright=true;
+  
+  player.update();
 
   for (int i = 0; i < tanks.size(); ++i) {
     Tank tank = tanks.get(i);
@@ -110,6 +111,10 @@ void draw() {
     if (bullet != null) bullet.update();
     if (bullet != null) bullet.display();
   }
+}
+
+void keyPressed(){
+  player.handleKeyPressed();
 }
 
 

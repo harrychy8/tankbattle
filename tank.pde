@@ -110,6 +110,7 @@ class Tank {
       }
     }
   }
+  
   boolean detectCollision (float l, float t, float r, float b) {
     return rectRectIntersect(this.x, this.y, this.x+40, this.y+40, l, t, r, b);
   }
