@@ -5,16 +5,40 @@ class Tank {
   boolean cangoleft = true;
   boolean cangoright = true;
   boolean cangodown = true;
+  PImage tankup;
+  PImage tankdown;
+  PImage tankleft;
+  PImage tankright;
   Tank(int x, int y) {
     this.x = x;
     this.y = y;
+
+    tankup = loadImage("tankup.png");
+    tankup.resize(40, 40);
+    tankdown = loadImage("tankdown.png");
+    tankdown.resize(40, 40);
+    tankleft = loadImage("tankleft.png");
+    tankleft.resize(40, 40);
+    tankright = loadImage("tankright.png");
+    tankright.resize(40, 40);
   }
 
-  void moveUp()    { y-=10; }
-  void moveDown()  { y+=10; }
-  void moveLeft()  { x-=10; }
-  void moveRight() { x+=10; }
- 
+
+  void moveUp() { 
+    y-=10;
+  }
+  void moveDown() { 
+    y+=10;
+  }
+  void moveLeft() { 
+    x-=10;
+  }
+  void moveRight() { 
+    x+=10;
+  }
+
+
+
 
   //Get current X coordinate / 40
   int getCurrentBlockX() {
@@ -35,7 +59,7 @@ class Tank {
   }
 
   //For player
-  void handleKeyPressed(char k) {
+  void handleKeyPressed() {
     if (key == 'w' || key == 'W') {
       if (this.cangoup == true) this.moveUp();
       resetFacing();
@@ -57,6 +81,14 @@ class Tank {
 
 
   void update() {
+
+
+    if (this.isup) image(this.tankup, x, y);
+    if (this.isdown) image(this.tankdown, x, y);
+    if (this.isleft) image(this.tankleft, x, y);
+    if (this.isright) image(this.tankright, x, y);
+
+
     for (int i = 0; i < 15; ++i) {
       for (int a = 0; a < 20; ++a) {
         if (map[i][a] == W || map[i][a] == R || map[i][a] == I ) {
