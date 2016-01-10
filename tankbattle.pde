@@ -1,4 +1,4 @@
-static final char G = 'G'; //<>// //<>// //<>// //<>//
+static final char G = 'G';  //<>//
 static final char W = 'W';
 static final char I = 'I';
 static final char R = 'R';
@@ -37,8 +37,8 @@ boolean cangoup=true, cangodown=true, cangoleft=true, cangoright=true;
 ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 ArrayList<EnemyTank> enemyTanks = new ArrayList<EnemyTank>();
 
-PImage tank1;
-PImage tank3;
+PImage tank2;
+
 
 void setup() {
   size(800, 600, P3D );
@@ -64,10 +64,9 @@ void setup() {
   tankleft.resize(40, 40);
   tankright = loadImage("tankright.png");
   tankright.resize(40, 40);
-  tank1 = loadImage("tank1.png");
-  tank1.resize(40, 40);
-  tank3 = loadImage("tank2.png");
-  tank3.resize(40, 40);
+
+  tank2 = loadImage("tank2down.png");
+  tank2.resize(40, 40);
   isup = true;
 
   for (int i = 0; i < 15; ++i) {
@@ -107,8 +106,8 @@ void draw() {
     }
   }
   image (canadaIMG, 360, 560);
-  image(tank1, 400, 400);
-  image(tank3, 400, 0);
+ 
+
 
 
   if (isup) image(tankup, x, y);
@@ -152,8 +151,8 @@ void draw() {
   }
   
   for (int i = 0; i < enemyTanks.size(); ++i){
-    enemyTanks.get(i).update();
-    enemyTanks.get(i).findRoute((int)x,(int)y);
+    if (enemyTanks != null)enemyTanks.get(i).update();
+    //if (enemyTanks != null)enemyTanks.get(i).findRoute((int)x,(int)y);
   }
 
 
