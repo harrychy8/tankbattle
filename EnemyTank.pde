@@ -85,7 +85,7 @@ class EnemyTank {
     }
     if (wait==30) {
       wait = 0;
-      int i = (int)random(1, 6);
+      int i = (int)random(1, 7);
       switch(i) {
       case 1:
         moveUp();
@@ -101,6 +101,10 @@ class EnemyTank {
         break;
       case 5:
         shoot();
+        break;
+      case 6:
+        moveDown();
+        break;
 
       default:
         break;
@@ -132,29 +136,21 @@ class EnemyTank {
             if (x==realMap[i][a].x-40 && y-40<realMap[i][a].y  && y+40>realMap[i][a].y) {
 
               this.ecangoright = false;
-            } else {
-              this.ecangoright = true;
             }
 
 
             if (x==realMap[i][a].x+40 && y-40<realMap[i][a].y  && y+40>realMap[i][a].y) {
               this.ecangoleft = false;
-            } else {
-              this.ecangoleft = true;
             }
 
 
             if (y==realMap[i][a].y-40 && x-40<realMap[i][a].x  && x+40>realMap[i][a].x) {
               this.ecangodown = false;
-            } else {
-              this.ecangodown = true;
             }
 
 
             if (y==realMap[i][a].y+40 && x-40<realMap[i][a].x  && x+40>realMap[i][a].x) {
               this.ecangoup = false;
-            } else {
-              this.ecangoup = true;
             }
           }
         }
