@@ -1,7 +1,7 @@
 class EnemyTank {
   int x, y;
   int speed = 40;
-  int wait=30;
+  int wait=5;
   boolean ecangoup = true;
   boolean ecangoleft = true;
   boolean ecangoright = true;
@@ -11,6 +11,7 @@ class EnemyTank {
   PImage tank2down;
   PImage tank2left;
   PImage tank2right;
+  int amishooting = 0;
 
 
 
@@ -73,40 +74,44 @@ class EnemyTank {
   }
 
   void shoot() {
-    whoIsShooting = 1;
-    bullets.add(new Bullet((int)(this.x+20), (int)(this.y+20), bullets,this));
+   
+    bullets.add(new Bullet((int)(this.x+20), (int)(this.y+20), bullets));
   }
 
 
 
   void randomMovement() {
-    if (wait < 30) {
+    if (wait < 5) {
       wait +=1;
     }
-    if (wait==30) {
+    if (wait==5) {
       wait = 0;
-      int i = (int)random(1, 7);
+      int i = (int)random(1, 6);
       switch(i) {
+
       case 1:
         moveUp();
         break;
+
       case 2:
         moveDown();
         break;
+      
       case 3:
         moveLeft();
         break;
+      
       case 4:
         moveRight();
         break;
+      
       case 5:
         shoot();
         break;
-      case 6:
-        moveDown();
-        break;
+
 
       default:
+
         break;
       }
     }
@@ -115,7 +120,7 @@ class EnemyTank {
     x = constrain(x, 0, 760);
     y = constrain(y, 0, 560);
   }
-  
+
 
 
   void update() {
@@ -127,6 +132,11 @@ class EnemyTank {
     if (eisright) image(tank2right, x, y);
 
     randomMovement();
+
+    ecangoup=true;
+    ecangodown=true;
+    ecangoleft=true;
+    ecangoright=true;
 
 
     for (int i = 0; i < 15; ++i) {

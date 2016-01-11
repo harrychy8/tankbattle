@@ -26,7 +26,7 @@ block[][] realMap = new block[15][20];
 
 
 float x = 280, y= 560 ;
-float x2 = 400, y2 = 400;
+
 PImage ironIMG, grassIMG, wallIMG, waterIMG, backgroundIMG, canadaIMG;
 boolean isup, isdown, isleft, isright;
 boolean cangoup=true, cangodown=true, cangoleft=true, cangoright=true;
@@ -37,7 +37,7 @@ PImage tankright;
 ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 
 ArrayList<EnemyTank> enemyTanks = new ArrayList<EnemyTank>();
-int whoIsShooting; 
+
 PImage tank2;
 
 
@@ -93,13 +93,13 @@ void setup() {
 
 
 
-  for (int i = 0; i < 4; ++i) {
+  for (int i = 0; i < 2; ++i) {
     spawnEnemyTank();
   }
 }
 
 void spawnEnemyTank() {
-  enemyTanks.add(new EnemyTank((int)(40 * random(0, 19)), 0));
+  enemyTanks.add(new EnemyTank  ( (int) (40 * random(0, 19) ), 0) );
 }
 
 
@@ -221,14 +221,14 @@ void keyPressed() {
 
 
   if (key == ' ') {
-    whoIsShooting =0;
+
     shoot();
   }
 }
 
 
 void shoot() {
-  bullets.add(new Bullet((int)(x+20), (int)(y+20), bullets,null));
+  bullets.add(new Bullet((int)(x+20), (int)(y+20), bullets));
 }
 
 
