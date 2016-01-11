@@ -2,40 +2,38 @@ class Bullet {
   int x, y;
   ArrayList<Bullet> bullets;
   int xSpeed, ySpeed;
+  EnemyTank tk;
 
-  Bullet(int x, int y, ArrayList<Bullet> bullets) {
+  Bullet(int x, int y, ArrayList<Bullet> bullets, EnemyTank tk) {
     this.x = x;
     this.y = y;
     this.bullets = bullets;
 
     xSpeed = 0;
     ySpeed = 0;
+    
 
 
-    if (whoIsShooting ==1) {
-
-      for (int i = 0; i < enemyTanks.size(); ++i) {
-
-        if (enemyTanks != null)enemyTanks.get(i).update();
+    if (whoIsShooting ==1 && this.tk != null) {
 
 
-        if ( enemyTanks.get(i).eisup == true) {
+        //if (enemyTanks != null)enemyTanks.get(i).update();
+        if ( this.tk.eisup == true) {
           ySpeed = -10;
-          break;
+          //break;
         }
-        if ( enemyTanks.get(i).eisdown == true) {
+        else if ( this.tk.eisdown == true) {
           ySpeed = 10;
-          break;
+          //break;
         }
-        if ( enemyTanks.get(i).eisleft == true) {
+        else if ( this.tk.eisleft == true) {
           xSpeed = -10;
-          break;
+          //break;
         }
-        if ( enemyTanks.get(i).eisright == true) {
+        else if ( this.tk.eisright == true) {
           xSpeed = 10;
-          break;
+          //break;
         }
-      }
     } // calcualte the direction of enemytanks' bullets
 
     else {
@@ -53,6 +51,8 @@ class Bullet {
         xSpeed = 10;
       }
     }
+    
+    println(xSpeed,ySpeed);
 
     // own tank's bullets' direction.
   }

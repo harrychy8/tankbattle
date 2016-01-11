@@ -1,4 +1,4 @@
-static final char G = 'G';  //<>//
+static final char G = 'G';  //<>// //<>//
 static final char W = 'W';
 static final char I = 'I';
 static final char R = 'R';
@@ -228,7 +228,7 @@ void keyPressed() {
 
 
 void shoot() {
-  bullets.add(new Bullet((int)(x+20), (int)(y+20), bullets));
+  bullets.add(new Bullet((int)(x+20), (int)(y+20), bullets,null));
 }
 
 

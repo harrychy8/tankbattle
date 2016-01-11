@@ -74,7 +74,7 @@ class EnemyTank {
 
   void shoot() {
     whoIsShooting = 1;
-    bullets.add(new Bullet((int)(this.x+20), (int)(this.y+20), bullets));
+    bullets.add(new Bullet((int)(this.x+20), (int)(this.y+20), bullets,this));
   }
 
 
@@ -111,6 +111,7 @@ class EnemyTank {
     x = constrain(x, 0, 760);
     y = constrain(y, 0, 560);
   }
+  
 
 
   void update() {
