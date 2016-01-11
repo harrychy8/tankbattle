@@ -3,36 +3,36 @@ class Bullet {
   ArrayList<Bullet> bullets;
   int xSpeed, ySpeed;
   int whoisshooting=1;
+  EnemyTank tk;
 
 
-  Bullet(int x, int y, ArrayList<Bullet> bullets ) {
+  Bullet(int x, int y, ArrayList<Bullet> bullets, int whoisshooting, EnemyTank tk) {
     this.x = x;
     this.y = y;
     this.bullets = bullets;
+    this.whoisshooting = whoisshooting;
+    this.tk = tk;
 
     xSpeed = 0;
     ySpeed = 0;
 
 
 
-    if (whoisshooting ==1 ) {
-      for (int i = 0; i < enemyTanks.size(); ++i) {
-        if (enemyTanks != null)enemyTanks.get(i).update();
-        if ( enemyTanks.get(i).eisup == true) {
+    if (this.whoisshooting ==1 ) {
+        if (this.tk.eisup == true) {
           ySpeed = -10;
         }
           //break;
-         else if ( enemyTanks.get(i).eisdown == true)  {
+         else if (this.tk.eisdown == true)  {
           ySpeed = 10; }
           //break;
-         else if ( enemyTanks.get(i).eisleft == true)  {
+         else if ( this.tk.eisleft == true)  {
           xSpeed = -10; }
           //break;
-         else if ( enemyTanks.get(i).eisright == true)  {
+         else if ( this.tk.eisright == true)  {
           xSpeed = 10;  }
           //break;
         }
-      } // calcualte the direction of enemytanks' bullets
 
 else {
 

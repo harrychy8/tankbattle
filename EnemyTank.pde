@@ -75,7 +75,7 @@ class EnemyTank {
 
   void shoot() {
    
-    bullets.add(new Bullet((int)(this.x+20), (int)(this.y+20), bullets));
+    bullets.add(new Bullet((int)(this.x+20), (int)(this.y+20), bullets,1,this));
   }
 
 

@@ -228,7 +228,7 @@ void keyPressed() {
 
 
 void shoot() {
-  bullets.add(new Bullet((int)(x+20), (int)(y+20), bullets));
+  bullets.add(new Bullet((int)(x+20), (int)(y+20), bullets,0,null));
 }
 
 
