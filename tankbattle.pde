@@ -93,13 +93,13 @@ void setup() {
 
 
 
-  for (int i = 0; i < 2; ++i) {
+  for (int i = 0; i < 10; ++i) {
     spawnEnemyTank();
   }
 }
 
 void spawnEnemyTank() {
-  enemyTanks.add(new EnemyTank  ( (int) (40 * random(0, 19) ), 0) );
+  enemyTanks.add(new EnemyTank  ( 0, 0) );
 }
 
 

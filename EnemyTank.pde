@@ -1,7 +1,7 @@
 class EnemyTank {
   int x, y;
   int speed = 40;
-  int wait=5;
+  int wait=10;
   boolean ecangoup = true;
   boolean ecangoleft = true;
   boolean ecangoright = true;
@@ -81,6 +81,11 @@ class EnemyTank {
 
 
   void randomMovement() {
+    if (wait ==10) {
+      wait =0;
+      this.x += 40* (int) random(1,19);
+    }
+      
     if (wait < 5) {
       wait +=1;
     }

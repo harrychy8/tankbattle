@@ -50,7 +50,7 @@ else {
   }
 }
 
-println(xSpeed, ySpeed);
+
 
 // own tank's bullets' direction.
 }
