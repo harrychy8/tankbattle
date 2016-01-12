@@ -25,7 +25,7 @@ char[][] map = new char[][]{
 block[][] realMap = new block[15][20];
 
 
-float x = 280, y= 560 ;
+float playerx = 280, playery= 560 ;
 
 PImage ironIMG, grassIMG, wallIMG, waterIMG, backgroundIMG, canadaIMG;
 boolean isup, isdown, isleft, isright;
@@ -113,10 +113,10 @@ void draw() {
   }
   image (canadaIMG, 360, 560);
 
-  if (isup) image(tankup, x, y);
-  if (isdown) image(tankdown, x, y);
-  if (isleft) image(tankleft, x, y);
-  if (isright) image(tankright, x, y);
+  if (isup) image(tankup, playerx, playery);
+  if (isdown) image(tankdown, playerx, playery);
+  if (isleft) image(tankleft, playerx, playery);
+  if (isright) image(tankright, playerx, playery);
 
 
 
@@ -135,24 +135,24 @@ void draw() {
   for (int i = 0; i < 15; ++i) {
     for (int a = 0; a < 20; ++a) {
       if (map[i][a] == W || map[i][a] == R || map[i][a] == I ) {
-        if (rectRectIntersect(x, y, x+40, y+40, realMap[i][a].x, realMap[i][a].y, realMap[i][a].x+40, realMap[i][a].y+40) == true) {
-          if (x==realMap[i][a].x-40 && y-40<realMap[i][a].y  && y+40>realMap[i][a].y) {
+        if (rectRectIntersect(playerx, playery, playerx+40, playery+40, realMap[i][a].x, realMap[i][a].y, realMap[i][a].x+40, realMap[i][a].y+40) == true) {
+          if (playerx==realMap[i][a].x-40 && playery-40<realMap[i][a].y  && playery+40>realMap[i][a].y) {
 
             cangoright = false;
           } 
 
 
-          if (x==realMap[i][a].x+40 && y-40<realMap[i][a].y  && y+40>realMap[i][a].y) {
+          if (playerx==realMap[i][a].x+40 && playery-40<realMap[i][a].y  && playery+40>realMap[i][a].y) {
             cangoleft = false;
           }
 
 
-          if (y==realMap[i][a].y-40 && x-40<realMap[i][a].x  && x+40>realMap[i][a].x) {
+          if (playery==realMap[i][a].y-40 && playerx-40<realMap[i][a].x  && playerx+40>realMap[i][a].x) {
             cangodown = false;
           }
 
 
-          if (y==realMap[i][a].y+40 && x-40<realMap[i][a].x  && x+40>realMap[i][a].x) {
+          if (playery==realMap[i][a].y+40 && playerx-40<realMap[i][a].x  && playerx+40>realMap[i][a].x) {
             cangoup = false;
           }
         }
@@ -189,35 +189,35 @@ boolean rectRectIntersect(float left, float top, float right, float bottom,
 void keyPressed() {
   if (key == 'w' || key == 'W') {
     if  (cangoup == true) {
-      y-=20;
+      playery-=20;
     }
     setalltofalse();
     isup = true;
   }
   if (key == 's' || key == 'S') {
     if  (cangodown == true) {
-      y+=20;
+      playery+=20;
     }
     setalltofalse();
     isdown = true;
   }
   if (key == 'a' || key == 'A') {
     if  (cangoleft == true) {
-      x-=20;
+      playerx-=20;
     }
     setalltofalse();
     isleft = true;
   }
   if (key == 'd' || key == 'D') {
     if  (cangoright == true) {
-      x+=20;
+      playerx+=20;
     }
     setalltofalse();
     isright = true;
   }
 
-  x = constrain(x, 0, 760);
-  y = constrain(y, 0, 560);
+  playerx = constrain(playerx, 0, 760);
+  playery = constrain(playery, 0, 560);
 
 
   if (key == ' ') {
@@ -228,7 +228,7 @@ void keyPressed() {
 
 
 void shoot() {
-  bullets.add(new Bullet((int)(x+20), (int)(y+20), bullets,0,null));
+  bullets.add(new Bullet((int)(playerx+20), (int)(playery+20), bullets,0,null));
 }
 
 

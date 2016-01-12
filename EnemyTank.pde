@@ -149,21 +149,14 @@ class EnemyTank {
         if (map[i][a] == W || map[i][a] == R || map[i][a] == I ) {
           if (rectRectIntersect(x, y, x+40, y+40, realMap[i][a].x, realMap[i][a].y, realMap[i][a].x+40, realMap[i][a].y+40) == true) {
             if (x==realMap[i][a].x-40 && y-40<realMap[i][a].y  && y+40>realMap[i][a].y) {
-
               this.ecangoright = false;
             }
-
-
             if (x==realMap[i][a].x+40 && y-40<realMap[i][a].y  && y+40>realMap[i][a].y) {
               this.ecangoleft = false;
             }
-
-
             if (y==realMap[i][a].y-40 && x-40<realMap[i][a].x  && x+40>realMap[i][a].x) {
               this.ecangodown = false;
             }
-
-
             if (y==realMap[i][a].y+40 && x-40<realMap[i][a].x  && x+40>realMap[i][a].x) {
               this.ecangoup = false;
             }
@@ -171,5 +164,44 @@ class EnemyTank {
         }
       }
     }
+    
+    for (int i = 0; i < enemyTanks.size(); ++i){
+        if(enemyTanks.get(i) != this){
+          if (rectRectIntersect(this.x, this.y, this.x+40, this.y+40, enemyTanks.get(i).x, enemyTanks.get(i).y, enemyTanks.get(i).x+40, enemyTanks.get(i).y+40) == true) {
+            if (this.x==enemyTanks.get(i).x-40 && this.y-40<enemyTanks.get(i).y  && this.y+40>enemyTanks.get(i).y) {
+              this.ecangoright = false;
+            }
+            if (this.x==enemyTanks.get(i).x+40 && this.y-40<enemyTanks.get(i).y  && this.y+40>enemyTanks.get(i).y) {
+              this.ecangoleft = false;
+            }
+            if (this.y==enemyTanks.get(i).y-40 && this.x-40<enemyTanks.get(i).x  && this.x+40>enemyTanks.get(i).x) {
+              this.ecangodown = false;
+            }
+            if (this.y==enemyTanks.get(i).y+40 && this.x-40<enemyTanks.get(i).x  && this.x+40>enemyTanks.get(i).x) {
+              this.ecangoup = false;
+            }
+          }
+        }
+    }
+    
+    if (rectRectIntersect(this.x, this.y, this.x+40, this.y+40, playerx, playery, playerx+40, playery+40) == true) {
+      if (this.x==playerx-40 && this.y-40<playery  && this.y+40>playery) {
+        this.ecangoright = false;
+        cangoright = false;
+      }
+      if (this.x==playerx+40 && this.y-40<playery  && this.y+40>playery) {
+        this.ecangoleft = false;
+        cangoleft = false;
+      }
+      if (this.y==playery-40 && this.x-40<playerx  && this.x+40>playerx) {
+        this.ecangodown = false;
+        cangodown = false;
+      }
+      if (this.y==playery+40 && this.x-40<playerx  && this.x+40>playerx) {
+        this.ecangoup = false;
+        cangoup = false;
+      }
+    }
+    
   }
 }
