@@ -166,6 +166,36 @@ void draw() {
     }
   }
 
+
+  for (int i = 0; i < enemyTanks.size(); ++i) {
+    if (rectRectIntersect(playerx, playery, playerx+40, playery+40, enemyTanks.get(i).x, enemyTanks.get(i).y, enemyTanks.get(i).x+40, enemyTanks.get(i).y+40) == true) {
+      if (playerx==enemyTanks.get(i).x-40 && playery-40<enemyTanks.get(i).y  && playery+40>enemyTanks.get(i).y) {
+
+        cangoright = false;
+      } 
+
+
+      if (playerx==enemyTanks.get(i).x+40 && playery-40<enemyTanks.get(i).y  && playery+40>enemyTanks.get(i).y) {
+        cangoleft = false;
+      }
+
+
+      if (playery==enemyTanks.get(i).y-40 && playerx-40<enemyTanks.get(i).x  && playerx+40>enemyTanks.get(i).x) {
+        cangodown = false;
+      }
+
+
+      if (playery==enemyTanks.get(i).y+40 && playerx-40<enemyTanks.get(i).x  && playerx+40>enemyTanks.get(i).x) {
+        cangoup = false;
+      }
+    }
+  }
+
+
+
+
+
+
   for (int i = 0; i < bullets.size(); ++i) {
     Bullet bullet = bullets.get(i);
     if (bullet != null) bullet.update();
@@ -174,7 +204,7 @@ void draw() {
 }
 
 
-
+boolean isColliding (Enemytank Enemytank, Bullet bullet);
 
 
 boolean rectRectIntersect(float left, float top, float right, float bottom, 
@@ -189,28 +219,28 @@ boolean rectRectIntersect(float left, float top, float right, float bottom,
 void keyPressed() {
   if (key == 'w' || key == 'W') {
     if  (cangoup == true) {
-      playery-=20;
+      playery-=40;
     }
     setalltofalse();
     isup = true;
   }
   if (key == 's' || key == 'S') {
     if  (cangodown == true) {
-      playery+=20;
+      playery+=40;
     }
     setalltofalse();
     isdown = true;
   }
   if (key == 'a' || key == 'A') {
     if  (cangoleft == true) {
-      playerx-=20;
+      playerx-=40;
     }
     setalltofalse();
     isleft = true;
   }
   if (key == 'd' || key == 'D') {
     if  (cangoright == true) {
-      playerx+=20;
+      playerx+=40;
     }
     setalltofalse();
     isright = true;
@@ -228,7 +258,7 @@ void keyPressed() {
 
 
 void shoot() {
-  bullets.add(new Bullet((int)(playerx+20), (int)(playery+20), bullets,0,null));
+  bullets.add(new Bullet((int)(playerx+20), (int)(playery+20), bullets, 0, null));
 }
 
 
